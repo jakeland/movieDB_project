@@ -1,4 +1,4 @@
-<%= form_for(movie) do |f| %>
+<%= form_for @movie, html: {multipart: true} do |f| %>
   <% if movie.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
@@ -36,10 +36,16 @@
     <%= f.text_field :movie_rating %>
   </div>
 
-  <div class="field">
+   <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+
+  <!--<div class="field">
     <%= f.label :avg_rating %>
     <%= f.text_field :avg_rating %>
   </div>
+  -->
 
   <div class="actions">
     <%= f.submit %>
