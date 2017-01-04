@@ -2,7 +2,8 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :set_movie
   before_action :authenticate_user!
-
+  before_action :limit_review, only: [:new, :create]
+  helper ReviewsHelper
 
  
   def new
@@ -10,8 +11,7 @@ class ReviewsController < ApplicationController
   end
 
   # GET /reviews/1/edit
-  def edit
-  end
+
 
   # POST /reviews
   # POST /reviews.json
@@ -35,7 +35,7 @@ class ReviewsController < ApplicationController
   def update
     respond_to do |format|
       if @review.update(review_params)
-        format.html { redirect_to @review, notice: 'Review was successfully updated.' }
+        format.html { redirect_to @movie, notice: 'Review was successfully updated.' }
         format.json { render :show, status: :ok, location: @review }
       else
         format.html { render :edit }
@@ -61,6 +61,16 @@ class ReviewsController < ApplicationController
     end
     def set_movie
       @movie = Movie.find(params[:movie_id])
+    end
+    def set_user
+      @current_user = User.find(params[:user_id])
+    end
+    def limit_review
+      @user_review = current_user.movie_review(@movie)
+
+      if @user_review.present?
+        redirect_to edit_movie_review_path(@movie, @review)
+      end 
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params

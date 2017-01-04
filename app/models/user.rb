@@ -7,4 +7,7 @@ class User < ApplicationRecord
   has_many :movies
   has_many :reviews, dependent: :destroy
 
+  	def movie_review(movie)
+  		Review.find_by(user_id: self.id, movie_id: movie.id)
+  	end
 end
