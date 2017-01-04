@@ -26,14 +26,7 @@
                  <td><strong>Movie length:</strong></td>
                  <td><%= @movie.movie_length %></td>
               </tr>
-              <tr>
-                  <td><strong>Movie rating:</strong></td>
-                  <td><%= @movie.movie_rating %></td>
-              </tr>
-              <tr>
-                  <td><strong>Avg rating:</strong></td>
-                  <td><%= @movie.avg_rating %></td>
-              </tr>
+             
             </tbody>
           </table>
           <%= create_or_edit_review_path(@movie) %>
