@@ -1,5 +1,6 @@
 class Movie < ApplicationRecord
-belongs_to :user
+belongs_to :admin
+
 has_many :reviews
 
   has_attached_file :image, styles: { medium: "400x600#"} #, default_url: "/images/:style/missing.png"

@@ -65,6 +65,9 @@ class ReviewsController < ApplicationController
     def set_user
       @current_user = User.find(params[:user_id])
     end
+    def set_admin
+      @current_admin = Admin.find(params[:admin_id])
+    end
     def limit_review
       @user_review = current_user.movie_review(@movie)
 
