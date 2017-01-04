@@ -69,7 +69,7 @@ class ReviewsController < ApplicationController
       @user_review = current_user.movie_review(@movie)
 
       if @user_review.present?
-        redirect_to edit_movie_review_path(@movie, @review)
+        redirect_to edit_movie_review_path(@movie, @user_review)
       end 
     end
     # Never trust parameters from the scary internet, only allow the white list through.

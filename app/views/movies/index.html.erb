@@ -14,7 +14,7 @@
 <div class="row">
   <% @movies.each do |movie| %>
     <div class="col-sm-6 col-md-3">
-      <div class="thumbnail">
+      <div class="thumbnail" movieId = <%=movie.id%> >
           <%= link_to (image_tag movie.image.url(:medium), class: 'image'), movie %>
          	<div class="row">
          		<div class = "col-sm-12">
@@ -23,7 +23,7 @@
          	</div>
          	<div class="row">
          		<div class="col-sm-12">
-         			 <div class="star-rating" data-score=0 ></div>
+         			 <div class="star-rating" data-score=<%= movie.avg_rating %> ></div>
          		</div>
          	</div>
       </div>
@@ -32,6 +32,9 @@
 </div>
 
 <script>
+
+   	
+
   $('.star-rating').raty({
     path: '/assets/',
     readOnly:true,
@@ -39,4 +42,12 @@
       return($(this).attr('data-score'));
     }
   })
+  	//reloads star-rating and stops duplication of stars.
+    $('.star-rating').raty('reload');
+
+</script>
+
+<script>
+	$("div[movieId]").on('mouseover',function(){$(this).addClass("hovering")});
+	$("div[movieId]").on('mouseout',function(){$(this).removeClass("hovering")});
 </script>

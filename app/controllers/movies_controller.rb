@@ -6,9 +6,16 @@ class MoviesController < ApplicationController
   # GET /movies.json
   def index
     @movies = Movie.all
-      
-  end
+    @movies.each do |movie|
+      @reviews = Review.where(movie_id: movie.id).order("created_at DESC")
 
+    if@reviews.blank?
+        movie.avg_rating = 0
+    else
+        movie.avg_rating = @reviews.average(:rating).round(2)
+    end
+    end
+  end
 
   # GET /movies/1
   # GET /movies/1.json
