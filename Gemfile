@@ -39,6 +39,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise', '~> 4.2'
 #gem for image upload, active record upload management
 gem 'paperclip', '~> 5.1'
+#needed for images
+gem 'aws-sdk', '~> 2.3'
 #bootstrap
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 
